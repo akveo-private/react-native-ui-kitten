@@ -497,7 +497,7 @@ export class Select extends React.Component<SelectProps, State> {
           style={[styles.popover, evaStyle.popover]}
           visible={this.state.listVisible}
           fullWidth={true}
-          anchor={() => this.renderInputElement(touchableProps, evaStyle)}
+          anchor={this.renderInputElement(touchableProps, evaStyle)}
           onBackdropPress={this.onBackdropPress}>
           <List
             style={styles.list}

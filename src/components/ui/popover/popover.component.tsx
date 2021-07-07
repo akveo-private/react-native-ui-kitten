@@ -39,7 +39,7 @@ type PopoverModalProps = Overwrite<ModalProps, {
 }>;
 
 export interface PopoverProps extends PopoverViewProps, PopoverModalProps {
-  anchor: RenderProp;
+  anchor: RenderProp | (() => RenderProp);
   fullWidth?: boolean;
 }
 
@@ -212,7 +212,7 @@ export class Popover extends React.Component<PopoverProps, State> {
         {...this.props}
         contentContainerStyle={[this.props.contentContainerStyle, styles.popoverView, this.contentFlexPosition]}
         placement={this.actualPlacement.reverse()}>
-        {this.renderContentElement()}
+        <FalsyFC component={this.renderContentElement()} />
       </PopoverView>
     );
   };
@@ -222,18 +222,22 @@ export class Popover extends React.Component<PopoverProps, State> {
       <MeasureElement 
         shouldUseTopInsets={ModalService.getShouldUseTopInsets}
         onMeasure={this.onContentMeasure}>
-        {this.renderPopoverElement()}
+        <FalsyFC component={this.renderPopoverElement()} />
       </MeasureElement>
     );
   };
 
   public render(): React.ReactElement {
+    const renderAnchor = typeof this.props.anchor === 'function' 
+      ? this.props.anchor() 
+      : this.props.anchor
+    
     return (
       <MeasureElement
         shouldUseTopInsets={ModalService.getShouldUseTopInsets}
         force={this.state.forceMeasure}
         onMeasure={this.onChildMeasure}>
-          <FalsyFC component={this.props.anchor} />
+          <FalsyFC component={renderAnchor} />
       </MeasureElement>
     );
   }

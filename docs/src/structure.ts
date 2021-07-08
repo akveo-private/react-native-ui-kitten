@@ -642,6 +642,17 @@ export const structure = [
       },
       {
         type: 'tabs',
+        name: 'Modal Service',
+        icon: 'dialog-service.svg',
+        source: [
+          'ModalServiceType',
+        ],
+        title: 'Modal Service',
+        description: 'Service that provides methods for all UI Kitten supported modals.',
+        keywords: 'ui kitten, ui kitten menu, ui kitten modal service, modal service',
+      },
+      {
+        type: 'tabs',
         name: 'Popover',
         icon: 'popover.svg',
         source: [

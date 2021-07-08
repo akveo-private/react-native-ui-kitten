@@ -13,9 +13,9 @@
     "react": "17.0.1",
     "react-native": "0.64.1",
     "@eva-design/eva": "^2.1.0",
-    "@ui-kitten/components": "^5.1.0",
-    "@ui-kitten/eva-icons": "^5.1.0",
-    "@ui-kitten/metro-config": "^5.1.0",
+    "@ui-kitten/components": "5.1.1",
+    "@ui-kitten/eva-icons": "5.1.1",
+    "@ui-kitten/metro-config": "5.1.1",
     "react-native-svg": "^12.1.1"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 {
   "name": "@ui-kitten/metro-config",
   "description": "UI Kitten config for Metro Bundler",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "author": "akveo <contact@akveo.com>",
   "license": "MIT",
   "homepage": "https://github.com/akveo/react-native-ui-kitten#readme",

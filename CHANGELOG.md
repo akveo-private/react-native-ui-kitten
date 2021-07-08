@@ -1,3 +1,11 @@
+## 5.1.1 (2021-06-15)
+
+### :rocket: Highlights:
+* Added testID prop for components (#1444) ([83c75b0](https://github.com/akveo/react-native-ui-kitten/commit/83c75b0)), closes [#1444](https://github.com/akveo/react-native-ui-kitten/issues/1444)
+* Improved Autocomplete. Now no need to double-click to select item from the list  (#1423) ([af715a9](https://github.com/akveo/react-native-ui-kitten/commit/af715a9)), closes [#1423](https://github.com/akveo/react-native-ui-kitten/issues/1423)
+* Documentation fixes and corrections
+
+
 ## 5.1.0 (2021-04-16)
 
 ### :rocket: Highlights:

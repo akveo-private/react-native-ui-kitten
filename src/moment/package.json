@@ -1,7 +1,7 @@
 {
   "name": "@ui-kitten/moment",
   "description": "moment.js services for UI Kitten",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "author": "akveo <contact@akveo.com>",
   "license": "MIT",
   "homepage": "https://github.com/akveo/react-native-ui-kitten#readme",
@@ -24,7 +24,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ui-kitten/components": "5.1.0",
+    "@ui-kitten/components": "5.1.1",
     "moment": "^2.24.0"
   },
   "sideEffects": false

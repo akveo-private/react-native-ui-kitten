@@ -27,16 +27,11 @@ export class TabIndicator extends React.Component<TabIndicatorProps> {
   static defaultProps: Partial<TabIndicatorProps> = {
     selectedPosition: 0,
   };
-
-  private indicatorWidth: number;
+  private indicatorWidth: number = 0;
   private contentOffset: Animated.Value = new Animated.Value(0);
 
   public componentDidMount() {
     this.contentOffset.addListener(this.onContentOffsetAnimationStateChanged);
-  }
-
-  public shouldComponentUpdate(nextProps: TabIndicatorProps): boolean {
-    return this.props.selectedPosition !== nextProps.selectedPosition;
   }
 
   public componentDidUpdate() {

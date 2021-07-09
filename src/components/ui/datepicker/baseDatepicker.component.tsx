@@ -139,6 +139,7 @@ export abstract class BaseDatepickerComponent<P, D = Date> extends React.Compone
       placeholder: {
         marginHorizontal: textMarginHorizontal,
         color: placeholderColor,
+        fontSize: textFontSize,
       },
       icon: {
         width: iconWidth,
@@ -212,7 +213,7 @@ export abstract class BaseDatepickerComponent<P, D = Date> extends React.Compone
           component={this.props.accessoryLeft}
         />
         <FalsyText
-          style={evaStyle.text}
+          style={this.props.date ? evaStyle.text : evaStyle.placeholder}
           numberOfLines={1}
           ellipsizeMode='tail'
           component={this.getComponentTitle()}

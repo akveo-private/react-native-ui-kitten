@@ -156,8 +156,8 @@ export class MomentDateService extends DateService<Moment> {
         [TranslationWidth.LONG]: momentLocaleData.months(),
       },
       days: {
-        [TranslationWidth.SHORT]: momentLocaleData.weekdaysShort(),
-        [TranslationWidth.LONG]: momentLocaleData.weekdays(),
+        [TranslationWidth.SHORT]: momentLocaleData.weekdaysShort(true),
+        [TranslationWidth.LONG]: momentLocaleData.weekdays(true),
       },
     };
   }

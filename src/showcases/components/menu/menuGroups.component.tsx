@@ -31,7 +31,7 @@ export const MenuGroupsShowcase = () => {
           <MenuItem title='UI Kitten' accessoryLeft={StarIcon}/>
           <MenuItem title='Kitten Tricks' accessoryLeft={StarIcon}/>
         </MenuGroup>
-        <MenuGroup title='Akveo Angular' accessoryLeft={BrowserIcon}>
+        <MenuGroup title='Akveo Angular' accessoryLeft={BrowserIcon} initialExpanded={true}>
           <MenuItem title='Nebular' accessoryLeft={StarIcon}/>
           <MenuItem title='ngx-admin' accessoryLeft={StarIcon}/>
           <MenuItem title='UI Bakery' accessoryLeft={StarIcon}/>

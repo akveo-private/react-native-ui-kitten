@@ -25,6 +25,7 @@ import { MenuItemDescriptor } from './menu.service';
 
 export interface MenuGroupProps extends MenuItemProps {
   children?: ChildrenWithProps<MenuItemProps>;
+  initialExpanded?: boolean;
 }
 
 export type MenuGroupElement = React.ReactElement<MenuGroupProps>;
@@ -58,6 +59,9 @@ const POSITION_OUTSCREEN: Point = Point.outscreen();
  * @property {ReactElement | (ImageProps) => ReactElement} accessoryRight - Function component
  * to render to end of the *title*.
  * Expected to return an Image.
+ * 
+ * @property {boolean} initialExpanded - Boolean value to render to initially expand a group.
+ * If true - menu group will be expanded by default.
  *
  * @property {TouchableOpacityProps} ...TouchableOpacityProps - Any props applied to TouchableOpacity component.
  *
@@ -65,10 +69,23 @@ const POSITION_OUTSCREEN: Point = Point.outscreen();
  */
 export class MenuGroup extends React.Component<MenuGroupProps, State> {
 
+  private initialExpanded: boolean;
+
+  constructor(props) {
+    super(props);
+    this.initialExpanded = false;
+  }
+
   public state: State = {
     submenuHeight: 1,
   };
   private expandAnimation: Animated.Value = new Animated.Value(0);
+
+  public componentDidMount() {
+    if(this.props.initialExpanded) {
+      this.initialExpanded = true;
+    }
+  }
 
   private get hasSubmenu(): boolean {
     return React.Children.count(this.props.children) > 0;
@@ -110,12 +127,17 @@ export class MenuGroup extends React.Component<MenuGroupProps, State> {
 
   private onSubmenuMeasure = (frame: Frame): void => {
     this.setState({ submenuHeight: frame.size.height });
+    if (this.initialExpanded) {
+      const expandValue: number = this.expandAnimationValue > 0 ? 0 : this.state.submenuHeight;
+      this.createExpandAnimation(expandValue, 0).start();
+      this.initialExpanded = false
+    }
   };
 
-  private createExpandAnimation = (toValue: number): Animated.CompositeAnimation => {
+  private createExpandAnimation = (toValue: number, duration?: number): Animated.CompositeAnimation => {
     return Animated.timing(this.expandAnimation, {
       toValue: toValue,
-      duration: CHEVRON_ANIM_DURATION,
+      duration: duration || CHEVRON_ANIM_DURATION,
       useNativeDriver: false,
     });
   };
@@ -129,7 +151,7 @@ export class MenuGroup extends React.Component<MenuGroupProps, State> {
 
     return (
       <Animated.View style={{ transform: [{ rotate: this.expandToRotateInterpolation }] }}>
-        <ChevronDown {...evaProps} fill={style.tintColor}/>
+        <ChevronDown {...evaProps} fill={style.tintColor as string}/>
       </Animated.View>
     );
   };
@@ -172,6 +194,8 @@ export class MenuGroup extends React.Component<MenuGroupProps, State> {
 
   public render(): React.ReactNode {
     const { children, ...itemProps } = this.props;
+
+    console.log(this.initialExpanded);
 
     return (
       <React.Fragment>

@@ -53,6 +53,7 @@ export {
   CalendarRange,
   CalendarViewMode,
   CalendarViewModes,
+  CalendarViewModeId,
 } from './calendar/type';
 export {
   CheckBox,

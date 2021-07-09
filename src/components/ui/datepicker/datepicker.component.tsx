@@ -120,6 +120,17 @@ export type DatepickerElement<D = Date> = React.ReactElement<DatepickerProps<D>>
  * Defaults to *bottom*.
  *
  * @property {StyleProp<ViewStyle>} backdropStyle - Style of backdrop.
+ * 
+ * @property {(CalendarViewMode) => void} renderArrowLeft - Function component
+ * to render instead of default previous arrow.
+ * Accepts viewMode argument which returns string with current calendar view ("YEAR", "MONTH", "DATE").
+ * 
+ * @property {(CalendarViewMode) => void} renderArrowRight - Function component
+ * to render instead of default next arrow.
+ * Accepts viewMode argument which returns string with current calendar view ("YEAR", "MONTH", "DATE").
+ * 
+ * @property {(D, CalendarViewMode) => void} onVisibleDateChange - Called when navigating to the previous or next month / year.
+ * viewMode returns string with current calendar view ("YEAR", "MONTH", "DATE").
  *
  * @property {TouchableOpacityProps} ...TouchableOpacityProps - Any props applied to TouchableOpacity component.
  *
@@ -193,6 +204,9 @@ export class Datepicker<D = Date> extends BaseDatepickerComponent<DatepickerProp
       renderDay: this.props.renderDay,
       renderMonth: this.props.renderMonth,
       renderYear: this.props.renderYear,
+      renderArrowRight: this.props.renderArrowRight,
+      renderArrowLeft: this.props.renderArrowLeft,
+      onVisibleDateChange: this.props.onVisibleDateChange,
     };
   }
 

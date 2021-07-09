@@ -14,7 +14,7 @@ import {
   ViewProps,
 } from 'react-native';
 import { SvgProps } from 'react-native-svg';
-import { RTLService } from '../../../devsupport';
+import { RTLService, RenderProp } from '../../../devsupport';
 import { Button } from '../../button/button.component';
 import {
   Text,
@@ -41,6 +41,8 @@ export interface CalendarHeaderProps extends ViewProps {
   onTitlePress?: () => void;
   onNavigationLeftPress?: () => void;
   onNavigationRightPress?: () => void;
+  arrowLeft?: RenderProp<Partial<ViewProps | TextProps>>;
+  arrowRight?: RenderProp<Partial<ViewProps | TextProps>>;
 }
 
 export type CalendarHeaderElement = React.ReactElement<CalendarHeaderProps>;
@@ -82,19 +84,31 @@ export class CalendarHeader extends React.Component<CalendarHeaderProps> {
     );
   };
 
+  private renderLeftArrow = (): React.ReactElement => {
+    return (
+      <Button
+        appearance='ghost'
+        accessoryRight={this.props.arrowLeft || this.renderLeftIcon}
+        onPress={this.props.onNavigationLeftPress}
+      />
+    );
+  };
+
+  private renderRightArrow = (): React.ReactElement => {
+    return (
+      <Button
+        appearance='ghost'
+        accessoryRight={this.props.arrowRight || this.renderRightIcon}
+        onPress={this.props.onNavigationRightPress}
+      />
+    );
+  };
+
   private renderLateralNavigationControls = (): React.ReactElement<ViewProps> => {
     return (
       <View style={styles.subContainer}>
-        <Button
-          appearance='ghost'
-          accessoryRight={this.renderLeftIcon}
-          onPress={this.props.onNavigationLeftPress}
-        />
-        <Button
-          appearance='ghost'
-          accessoryRight={this.renderRightIcon}
-          onPress={this.props.onNavigationRightPress}
-        />
+        {this.renderLeftArrow()}
+        {this.renderRightArrow()}
       </View>
     );
   };

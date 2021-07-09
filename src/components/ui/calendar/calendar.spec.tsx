@@ -26,6 +26,7 @@ import {
 } from './calendar.component';
 import { CalendarViewModes } from './type';
 import { MomentDateService } from '@ui-kitten/moment';
+import { Text } from '../text/text.component';
 
 describe('@calendar: component checks', () => {
 
@@ -279,5 +280,35 @@ describe('@calendar: component checks', () => {
     expect(onVisibleDateChange).toBeCalledTimes(2);
 
   });
+
+  it('should render custom left arrow', () => {
+    const renderArrow = (id: string) => {
+      return (
+        <Text>{id}</Text>
+      )
+    }
+
+    const component = render(
+      <TestCalendar renderArrowLeft={renderArrow} />
+    );
+
+    const leftArrow = component.queryByText('DATE');
+    expect(leftArrow).toBeTruthy();
+  })
+
+  it('should render custom right arrow', () => {
+    const renderArrow = (id: string) => {
+      return (
+        <Text>{id}</Text>
+      )
+    }
+
+    const component = render(
+      <TestCalendar renderArrowLeft={renderArrow} />
+    );
+
+    const leftArrow = component.queryByText('DATE');
+    expect(leftArrow).toBeTruthy();
+  })
 
 });

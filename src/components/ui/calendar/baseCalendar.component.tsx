@@ -54,6 +54,8 @@ export interface BaseCalendarProps<D = Date> extends ViewProps {
   renderDay?: (info: CalendarDateInfo<D>, style: StyleType) => React.ReactElement;
   renderMonth?: (info: CalendarDateInfo<D>, style: StyleType) => React.ReactElement;
   renderYear?: (info: CalendarDateInfo<D>, style: StyleType) => React.ReactElement;
+  renderArrowLeft?: (viewModeId: CalendarViewModeId) => React.ReactElement;
+  renderArrowRight?: (viewModeId: CalendarViewModeId) => React.ReactElement;
   onVisibleDateChange?: (date: D, viewModeId: CalendarViewModeId) => void;
   eva?: EvaProp;
 }
@@ -428,6 +430,14 @@ export abstract class BaseCalendarComponent<P, D = Date> extends React.Component
     return null;
   };
 
+  private renderArrowLeft = () => {
+    return this.props.renderArrowLeft(this.state.viewMode.id);
+  }
+
+  private renderArrowRight = () => {
+    return this.props.renderArrowRight(this.state.viewMode.id);
+  }
+
   private renderHeaderElement = (evaStyle): CalendarHeaderElement => {
     const titleSelector = this.props.title || this.createViewModeHeaderTitle;
 
@@ -441,6 +451,8 @@ export abstract class BaseCalendarComponent<P, D = Date> extends React.Component
         onTitlePress={this.onPickerNavigationPress}
         onNavigationLeftPress={this.onHeaderNavigationLeftPress}
         onNavigationRightPress={this.onHeaderNavigationRightPress}
+        arrowLeft={this.props.renderArrowLeft && this.renderArrowLeft}
+        arrowRight={this.props.renderArrowRight && this.renderArrowRight}
       />
     );
   };

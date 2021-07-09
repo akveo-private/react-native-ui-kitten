@@ -9,6 +9,8 @@ import {
   ControlThemedStyleType,
   ThemedStyleType,
 } from '@eva-design/dss';
+import isEqual from 'react-fast-compare';
+import memoizeOne from 'memoize-one';
 import { StyledComponentProps } from './styled';
 import {
   Interaction,
@@ -49,6 +51,8 @@ export class StyleConsumerService {
 
       console.error(message);
     }
+
+    this.getGeneratedStyleMapping = memoizeOne(this.getGeneratedStyleMapping.bind(this), isEqual)
   }
 
   public createDefaultProps<P extends object>(): StyledComponentProps {
